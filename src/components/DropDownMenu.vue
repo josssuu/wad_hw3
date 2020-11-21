@@ -1,38 +1,39 @@
 <template>
-    <div>
-
+    <div class="drop-down-container">
+        <span id="user-name">{{ username }}</span>
+        <span id="user-email">{{email}}</span>
+        <span class="separator"></span>
+        <span>
+            <a href="browse.html">Browse</a>
+        </span>
+        <span class="separator"></span>
+        <span>
+            <a href="login.html">Log Out</a>
+        </span>
     </div>
 </template>
 
 <script>
 export default {
-name: "DropDownMenu"
+    name: "DropDownMenu",
+    props: {
+        username: String,
+        email: String
+    },
+    computed: {
+        isHidden: true
+    },
+    methods: {
+        toggle() {
+
+        },
+        isVisible() {
+            return this.isHidden
+        }
+    }
 }
 </script>
 
 <style scoped>
-.drop-down-container {
-    position: absolute;
-    min-width: 150px;
-    height: auto;
-    background-color: #ffffff;
-    padding: 10px;
-    right: 0;
-    top: 50px;
-    text-align: left;
-    display: none;
-}
 
-.drop-down-container span{
-    display: block;
-}
-
-.drop-down-container span.separator{
-    border-bottom: 1px solid #d7d7d7;
-    margin: 10px -10px;
-}
-
-a {
-    color: #40c4ff;
-}
 </style>

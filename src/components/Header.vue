@@ -1,12 +1,46 @@
 <template>
     <div>
-
+        <nav>
+            <div class="logo-container">
+                <img src="../assets/logo.png" alt="postIt">
+            </div>
+            <div class="search-container">
+                <input type="text" name="search">
+                <button type="button">Search</button>
+            </div>
+            <div class="avatar-container">
+                <img class="avatar" :src=userinfo.avatar @click="toggleDropDownMenu">
+                <div v-if="dropdownmenuVisible" class="drop-down-container">
+                    <span id="user-name">{{ userinfo.firstname }} {{userinfo.lastname}}</span>
+                    <span id="user-email">{{ userinfo.email }}</span>
+                    <span class="separator"></span>
+                    <span><a href="">Browse</a></span>
+                    <span class="separator"></span>
+                    <span><a href="">Log Out</a></span>
+                </div>
+            </div>
+        </nav>
     </div>
 </template>
 
 <script>
 export default {
-name: "Header"
+    name: "Header",
+    computed: {
+        userinfo: function () {
+            return this.$store.state.userinfo
+        }
+    },
+    data: function() {
+        return {
+            dropdownmenuVisible: false
+        }
+    },
+    methods: {
+        toggleDropDownMenu: function () {
+            this.dropdownmenuVisible = !this.dropdownmenuVisible
+        }
+    }
 }
 </script>
 
@@ -66,12 +100,28 @@ nav div.avatar-container {
     text-align: right;
 }
 
-.main-container {
-    width: 50%;
-    min-height: 100%;
-    margin: auto auto;
-    padding: 90px 15px 15px 15px;
+.drop-down-container {
+    position: absolute;
+    min-width: 150px;
+    height: auto;
     background-color: #ffffff;
+    padding: 10px;
+    right: 0;
+    top: 50px;
+    text-align: left;
+    display: block;
 }
 
+.drop-down-container span {
+    display: block;
+}
+
+.drop-down-container span.separator {
+    border-bottom: 1px solid #d7d7d7;
+    margin: 10px -10px;
+}
+
+a {
+    color: #40c4ff;
+}
 </style>

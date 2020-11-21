@@ -1,12 +1,50 @@
 <template>
     <div>
-
+        <div class="post">
+            <span class="post-author">
+                <span class="post-author-info">
+                    <img :src=author.avatar alt="Jackass">
+                    <small>{{ author.firstname }} {{author.lastname}}</small>
+                </span>
+                <small>{{ createTime }}</small>
+            </span>
+            <div v-if="media !== null" class="post-image">
+                <img v-if="media.type === 'image'" :src=media.url :alt=text>
+                <video v-if="media.type === 'video'" controls>
+                    <source type="video/mp4" :src=media.url>
+                </video>
+            </div>
+            <div class="post-title">
+                <h3>{{ text }}</h3>
+            </div>
+            <div class="post-actions">
+                <button @click=toggleLiked v-bind:style="liked ? 'like-button.liked' : 'like-button'" type="button" class="like-button">{{ likes }}</button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-name: "Post"
+    name: "Post",
+    props: {
+        author: Object,
+        createTime: String,
+        text: String,
+        media: Object,
+        likes: String
+    },
+    data: function() {
+        return {
+            liked: false
+        }
+    },
+    methods: {
+        toggleLiked: function () {
+            this.liked = !this.liked
+            console.log(this.liked)
+        }
+    }
 }
 </script>
 
@@ -89,7 +127,7 @@ name: "Post"
     border: none;
 }
 
-.like-button.liked {
+.like-button .liked {
     background-color: #01579b;
 }
 </style>
