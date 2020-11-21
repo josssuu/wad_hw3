@@ -1,20 +1,13 @@
 <template>
     <div id="app">
-        <Header/>
-        <Feed/>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Feed from './components/Feed.vue'
 
 export default {
     name: 'App',
-    components: {
-        Header,
-        Feed
-    },
     mounted() {
         this.$store.dispatch("getPosts")
         this.$store.dispatch("getProfiles")
@@ -54,5 +47,13 @@ button {
 button:hover {
     box-shadow: 0 0 5px rgba(38, 50, 56, 0.7);
     cursor: pointer;
+}
+
+.main-container {
+    width: 50%;
+    min-height: 100%;
+    margin: auto auto;
+    padding: 90px 15px 15px 15px;
+    background-color: #ffffff;
 }
 </style>

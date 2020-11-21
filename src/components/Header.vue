@@ -14,9 +14,10 @@
                     <span id="user-name">{{ userinfo.firstname }} {{userinfo.lastname}}</span>
                     <span id="user-email">{{ userinfo.email }}</span>
                     <span class="separator"></span>
-                    <span><a href="">Browse</a></span>
+                    <span v-if="content === 'Profiles'"><router-link :to="getPostsRoute()">Browse posts</router-link></span>
+                    <span v-if="content === 'Posts'"><router-link :to="getProfilesRoute()">Browse profiles</router-link></span>
                     <span class="separator"></span>
-                    <span><a href="">Log Out</a></span>
+                    <span><router-link :to="getLogOutRoute()">Log Out</router-link></span>
                 </div>
             </div>
         </nav>
@@ -33,13 +34,23 @@ export default {
     },
     data: function() {
         return {
-            dropdownmenuVisible: false
+            dropdownmenuVisible: false,
+            content: this.$route.name
         }
     },
     methods: {
         toggleDropDownMenu: function () {
             this.dropdownmenuVisible = !this.dropdownmenuVisible
-        }
+        },
+        getProfilesRoute: function () {
+            return '/profiles'
+        },
+        getLogOutRoute: function () {
+            return '/'
+        },
+        getPostsRoute: function () {
+            return '/posts'
+        },
     }
 }
 </script>
@@ -121,7 +132,7 @@ nav div.avatar-container {
     margin: 10px -10px;
 }
 
-a {
+router-link {
     color: #40c4ff;
 }
 </style>

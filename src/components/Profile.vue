@@ -1,12 +1,31 @@
 <template>
-    <div>
-
+    <div class="profile">
+        <img :src="avatar" :alt=firstname>
+        <h2>{{firstname}} {{lastname}}</h2>
+        <button @click=toggleFollow v-bind:class="isFollowing ? 'follow-button.followed' : 'follow-button'">
+            Follow
+        </button>
     </div>
 </template>
 
 <script>
 export default {
-name: "Profile"
+name: "Profile",
+    props: {
+        firstname: String,
+        lastname: String,
+        avatar: String,
+    },
+    data: function() {
+        return {
+            isFollowing: false
+        }
+    },
+    methods: {
+        toggleFollow: function () {
+            this.isFollowing = !this.isFollowing
+        }
+    }
 }
 </script>
 
