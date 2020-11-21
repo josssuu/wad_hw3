@@ -18,7 +18,9 @@
                 <h3>{{ text }}</h3>
             </div>
             <div class="post-actions">
-                <button @click=toggleLiked v-bind:style="liked ? 'like-button.liked' : 'like-button'" type="button" class="like-button">{{ likes }}</button>
+                <button @click=toggleLiked v-bind:class="liked ? 'like-button.liked' : 'like-button'" type="button">
+                    {{ likes }}
+                </button>
             </div>
         </div>
     </div>
@@ -42,7 +44,6 @@ export default {
     methods: {
         toggleLiked: function () {
             this.liked = !this.liked
-            console.log(this.liked)
         }
     }
 }
