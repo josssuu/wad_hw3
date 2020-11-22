@@ -18,7 +18,7 @@
                 <h3>{{ text }}</h3>
             </div>
             <div class="post-actions">
-                <button @click=toggleLiked v-bind:class="liked ? 'like-button.liked' : 'like-button'" type="button">
+                <button @click=toggleLiked v-bind:class="liked ? 'like-button-liked' : 'like-button'" type="button">
                     {{ likes }}
                 </button>
             </div>
@@ -135,7 +135,17 @@ export default {
     border: none;
 }
 
-.like-button .liked {
-    background-color: #01579b;
+.like-button-liked {
+  background-image: url(../assets/like.png);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-color: #01579b;
+  width: 60px;
+  height: 25px;
+  padding-left: 23px;
+  line-height: 10px;
+  text-align: left;
+  border: none;
 }
 </style>

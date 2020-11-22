@@ -29,7 +29,6 @@ html, body {
     height: 100%;
 }
 
-/* Not sure about this one */
 body {
     background-color: #0277bd;
     color: #263238;
@@ -53,7 +52,7 @@ button:hover {
     width: 50%;
     min-height: 100%;
     margin: auto auto;
-    padding: 90px 15px 15px 15px;
+    padding: 100px 15px 10.5% 15px;
     background-color: #ffffff;
 }
 </style>
