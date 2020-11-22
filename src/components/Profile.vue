@@ -1,7 +1,7 @@
 <template>
     <div class="profile">
         <img :src="avatar" :alt=firstname>
-        <h2>{{firstname}} {{lastname}}</h2>
+        <h2>{{firstname | capitalize}} {{lastname | capitalize}}</h2>
         <button @click=toggleFollow v-bind:class="isFollowing ? 'follow-button.followed' : 'follow-button'">
             Follow
         </button>
@@ -20,6 +20,13 @@ name: "Profile",
         return {
             isFollowing: false
         }
+    },
+    filters: {
+      capitalize: function (str) {
+        if (!str) return ''
+        str = str.toString()
+        return str.charAt(0).toUpperCase() + str.slice(1)
+      }
     },
     methods: {
         toggleFollow: function () {

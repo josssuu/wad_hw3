@@ -4,7 +4,7 @@
             <span class="post-author">
                 <span class="post-author-info">
                     <img :src=author.avatar alt="Jackass">
-                    <small>{{ author.firstname }} {{author.lastname}}</small>
+                    <small>{{ author.firstname | capitalize }} {{author.lastname | capitalize}}</small>
                 </span>
                 <small>{{ createTime }}</small>
             </span>
@@ -35,6 +35,13 @@ export default {
         text: String,
         media: Object,
         likes: String
+    },
+    filters: {
+      capitalize: function (str) {
+        if (!str) return ''
+        str = str.toString()
+        return str.charAt(0).toUpperCase() + str.slice(1)
+      }
     },
     data: function() {
         return {
